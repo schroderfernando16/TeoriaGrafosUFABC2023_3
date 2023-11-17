@@ -26,7 +26,7 @@ class PriorityQueue:
                 min_index = i
         if min_index != -1:
             self.queue[min_index] = 0
-        return min_index
+        return min_index,min_key
 
     def min(self):
         min_index = -1
@@ -35,7 +35,7 @@ class PriorityQueue:
             if q == 1 and self.keys[i] < min_key:
                 min_key = self.keys[i]
                 min_index = i
-        return min_index
+        return min_index,min_key
 
     def __str__(self):
         return str(self.queue)
@@ -49,14 +49,16 @@ for _ in range(k):
     operation = input().split()
     op_type = operation[0]
 
-    if op_type == 'I':  # Insert
+    if op_type == 'I': 
         q.insert(int(operation[1]))
         print(q)
-    elif op_type == 'M':  # Min
-        print(q.min(), q)
-    elif op_type == 'E':  # Extract Min
-        print(q.extract_min(), q)
-    elif op_type == 'B':  # Search
+    elif op_type == 'M':  
+        a,b = q.min()
+        print(a,b, q)
+    elif op_type == 'E':  
+        a,b = q.extract_min()
+        print(a,b, q)
+    elif op_type == 'B':
         print(q.search(int(operation[1])), q)
-    elif op_type == 'V':  # Is Empty
+    elif op_type == 'V':  
         print(q.is_empty(), q)
